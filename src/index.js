@@ -20,25 +20,21 @@ $l.extend = function(...objs) {
 }
 
 $l.ajax = function(options) {
-    return new Promise ((resolve, reject) => {
-        let defaults = {
-            success: (res) => console.log(JSON.parse(res)),
-            error: (res) => console.log(JSON.parse(res)),
-            url: window.location,
-            method: 'GET',
-            data: {},
-            contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-        }
-    
-        options = Object.assign({}, defaults, options);
-        const xmlRequest = new XMLHttpRequest;
-        xmlRequest.open(options['method'], options['url'], true);
-    
-        xmlRequest.onload = (e) => {
-        }
-    
-        xmlRequest.send(JSON.stringify(options['data']))
+    let defaults = {
+        success: (res) => console.log(JSON.parse(res)),
+        error: (res) => console.log(JSON.parse(res)),
+        url: window.location,
+        method: 'GET',
+        data: {},
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
 
+    options = Object.assign({}, defaults, options);
+    new Promise ((resolve, reject) => {
+        const xmlRequest = new XMLHttpRequest;
+        xmlRequest.open(options['method'], options['url']);
+        xmlRequest.send();
+        debugger;
         if (xmlRequest.status === 200) {
             resolve(xmlRequest.response)
         } else {
