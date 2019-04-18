@@ -21,8 +21,8 @@ $l.extend = function(...objs) {
 
 $l.ajax = function(options) {
     let defaults = {
-        success: (data) => console.log(`success... ${data}`),
-        error: (request, errorMessage) => console.log(`${request} failed because ${errorMessage}`),
+        success: () => `Success!`,
+        error: () => `Failed!`,
         url: window.location,
         method: 'GET',
         data: {},
@@ -32,9 +32,10 @@ $l.ajax = function(options) {
     const xmlRequest = new XMLHttpRequest;
     xmlRequest.open(options['method'], options['url']);
     xmlRequest.onload = () => {
-        console.log(xmlRequest.status);
-        console.log(xmlRequest.responseType);
-        console.log(xmlRequest.response);
+        let resultFunc = (xmlRequest.status === 200) ? options['success'] : options['error'];
+        console.log(`Result: ${resultFunc()}, Status Code: ${xmlRequest.status} `);
+        console.log(JSON.parse(xmlRequest.response));
+
     }
-    xmlRequest.send(defaults['data']);
+    xmlRequest.send(options['data'])
 }
