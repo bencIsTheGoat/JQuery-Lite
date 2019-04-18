@@ -20,22 +20,30 @@ $l.extend = function(...objs) {
 }
 
 $l.ajax = function(options) {
-    let defaults = {
-        success: () => `Success!`,
-        error: () => `Failed!`,
-        url: window.location,
-        method: 'GET',
-        data: {},
-        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
-    }
-    options = Object.assign({}, defaults, options);
-    const xmlRequest = new XMLHttpRequest;
-    xmlRequest.open(options['method'], options['url']);
-    xmlRequest.onload = () => {
-        let resultFunc = (xmlRequest.status === 200) ? options['success'] : options['error'];
-        console.log(`Result: ${resultFunc()}, Status Code: ${xmlRequest.status} `);
-        console.log(JSON.parse(xmlRequest.response));
+    return new Promise ((resolve, reject) => {
+        let defaults = {
+            success: (res) => console.log(JSON.parse(res)),
+            error: (res) => console.log(JSON.parse(res)),
+            url: window.location,
+            method: 'GET',
+            data: {},
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+    
+        options = Object.assign({}, defaults, options);
+        const xmlRequest = new XMLHttpRequest;
+        xmlRequest.open(options['method'], options['url'], true);
+    
+        xmlRequest.onload = (e) => {
+        }
+    
+        xmlRequest.send(JSON.stringify(options['data']))
 
-    }
-    xmlRequest.send(options['data'])
+        if (xmlRequest.status === 200) {
+            resolve(xmlRequest.response)
+        } else {
+            reject('fail')
+        }
+    })
+
 }
