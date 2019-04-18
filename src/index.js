@@ -30,11 +30,11 @@ $l.ajax = function(options) {
     }
     options = Object.assign({}, defaults, options);
     const xmlRequest = new XMLHttpRequest;
-    xmlRequest.open(options[method], options[url]);
+    xmlRequest.open(options['method'], options['url']);
     xmlRequest.onload = () => {
         console.log(xmlRequest.status);
         console.log(xmlRequest.responseType);
         console.log(xmlRequest.response);
     }
-    xmlRequest.send(defaults[data]);
+    xmlRequest.send(defaults['data']);
 }
