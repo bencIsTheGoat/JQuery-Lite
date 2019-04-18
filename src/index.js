@@ -18,3 +18,23 @@ $l.extend = function(...objs) {
     };
     return first;
 }
+
+$l.ajax = function(options) {
+    let defaults = {
+        success: (data) => console.log(`success... ${data}`),
+        error: (request, errorMessage) => console.log(`${request} failed because ${errorMessage}`),
+        url: window.location,
+        method: 'GET',
+        data: {},
+        contentType: 'application/x-www-form-urlencoded; charset=UTF-8'
+    }
+    options = Object.assign({}, defaults, options);
+    const xmlRequest = new XMLHttpRequest;
+    xmlRequest.open(options[method], options[url]);
+    xmlRequest.onload = () => {
+        console.log(xmlRequest.status);
+        console.log(xmlRequest.responseType);
+        console.log(xmlRequest.response);
+    }
+    xmlRequest.send(defaults[data]);
+}
