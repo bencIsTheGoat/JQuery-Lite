@@ -41,3 +41,15 @@ append(ele) {
     }
 ```
 
+```javascript
+ children() {
+        let arr = [];
+        for (let i = 0; i < this.arr.length; i++) {
+            for (let j = 0; j < this.arr[i].children.length; j++) {
+                arr.push(this.arr[i].children[j]);
+            }
+        }
+        return new DOMNodeCollection(arr);
+    }
+```
+
