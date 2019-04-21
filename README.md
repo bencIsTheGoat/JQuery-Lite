@@ -6,7 +6,7 @@ Extensive frontend-heavy project that mimics the functionality of JQuery, a Java
 
 ### Features
 
-#### This is the method that grabs the selected HTML element from the DOM and instantiates the element so that JQuery Lite methods can be utilized
+* This is the method that grabs the selected HTML element from the DOM and instantiates the element so that JQuery Lite methods can be utilized
 
 ```javascript
 window.$l = function (arg) {
