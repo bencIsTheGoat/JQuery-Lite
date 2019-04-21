@@ -78,6 +78,8 @@ on(event, callback) {
 
 #### Document Ready
 
+* The code below triggers all the event listener callbacks once the document is ready
+
 ```javascript
 $l.extend = function(...objs) {
     let first = objs[0];
