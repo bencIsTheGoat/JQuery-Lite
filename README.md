@@ -41,6 +41,8 @@ append(ele) {
     }
 ```
 
+* The children method returns the children of all the selected nodes 
+
 ```javascript
  children() {
         let arr = [];
