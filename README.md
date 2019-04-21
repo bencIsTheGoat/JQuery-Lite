@@ -61,6 +61,18 @@ append(ele) {
 
 #### Event Handling
 
+* The code below adds an event listener to the selected element
+
 ```javascript
+on(event, callback) {
+        for (let i = 0; i < this.arr.length; i++) {
+            this.arr[i].addEventListener(event, callback);
+            const key = `jqueryEvents-${event}`;
+            if (this.arr[i][key] === undefined) {
+                this.arr[i][key] = [];
+            }
+            this.arr[i][key].push(callback);
+        }
+    }
 ```
 
