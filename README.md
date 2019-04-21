@@ -20,3 +20,24 @@ window.$l = function (arg) {
 };
 ```
 
+#### DOMNodeCollection methods
+
+* The append method below is able to accept either a JQuery Lite wrapped collection, an HTML element or a string
+* Appends the outerHTML to the innerHTML of each element in the DOMNodeCollection
+
+```javascript
+append(ele) {
+        if (typeof ele === 'string' || ele instanceof HTMLElement) {
+             for (let i = 0; i < this.arr.length; i++) {
+                 this.arr[i].append(ele);
+             }
+        } else if (ele instanceof DOMNodeCollection) {
+             for (let i = 0; i < this.arr.length; i++) {
+                 for (let j = 0; j < ele.arr.length; j++) {
+                     this.arr[i].append(ele.arr[j]);
+                 }
+             }
+         }
+    }
+```
+
