@@ -25,6 +25,8 @@ window.$l = function (arg) {
 * The append method below is able to accept either a JQuery Lite wrapped collection, an HTML element or a string
 * Appends the outerHTML to the innerHTML of each element in the DOMNodeCollection
 
+#### Manipulation
+
 ```javascript
 append(ele) {
         if (typeof ele === 'string' || ele instanceof HTMLElement) {
@@ -41,6 +43,8 @@ append(ele) {
     }
 ```
 
+#### Traversal
+
 * The children method returns the children of all the selected nodes 
 
 ```javascript
@@ -53,5 +57,10 @@ append(ele) {
         }
         return new DOMNodeCollection(arr);
     }
+```
+
+#### Event Handling
+
+```javascript
 ```
 
